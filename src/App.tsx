@@ -1,19 +1,34 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { LanguageProvider } from './contexts/LanguageContext';
-import { AuthProvider } from './contexts/AuthContext';
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
-import WhatsAppFloat from './components/common/WhatsAppFloat';
-import ProtectedRoute from './components/common/ProtectedRoute';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import About from './pages/About';
-import Services from './pages/Services';
-import Recharge from './pages/Recharge';
-import Register from './pages/Register';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
+import WhatsAppFloat from "./components/common/WhatsAppFloat";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
+// Direct imports (no lazy)
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Recharge from "./pages/Recharge";
+import Register from "./pages/Register";
+import BankTransfer from "./pages/BankTransfer";
+import RedeemPoints from "./pages/RedeemPoints";
+import WalletTransfer from "./pages/WalletTransfer";
+import BecomePartner from "./pages/BecomePartner";
+import WhyUs from "./pages/WhyUs";
+import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import RefundPolicy from "./pages/RefundPolicy";
+import ContentPolicy from "./pages/ContentPolicy";
+import BugBounty from "./pages/BugBounty";
+import Support from "./pages/Support";
+import ServiceDetail from "./pages/ServiceDetail";
 
 function App() {
   return (
@@ -25,35 +40,45 @@ function App() {
               <Header />
               <main className="flex-1">
                 <Routes>
+                  {/* Public routes */}
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/services" element={<Services />} />
                   <Route path="/recharge" element={<Recharge />} />
-                  <Route 
-                    path="/dashboard" 
+
+                  {/* Protected route */}
+                  <Route
+                    path="/dashboard"
                     element={
                       <ProtectedRoute>
                         <Dashboard />
                       </ProtectedRoute>
-                    } 
+                    }
                   />
-                  {/* Temporary placeholder routes */}
-                  <Route path="/bank-transfer" element={<div className="p-8 text-center">Bank Transfer page coming soon...</div>} />
-                  <Route path="/redeem-points" element={<div className="p-8 text-center">Redeem Points page coming soon...</div>} />
-                  <Route path="/wallet-transfer" element={<div className="p-8 text-center">Wallet Transfer page coming soon...</div>} />
-                  <Route path="/become-partner" element={<div className="p-8 text-center">Become Partner page coming soon...</div>} />
-                  <Route path="/why-us" element={<div className="p-8 text-center">Why Us page coming soon...</div>} />
-                  <Route path="/blog" element={<div className="p-8 text-center">Blog page coming soon...</div>} />
-                  <Route path="/contact" element={<div className="p-8 text-center">Contact page coming soon...</div>} />
-                  <Route path="/privacy-policy" element={<div className="p-8 text-center">Privacy Policy page coming soon...</div>} />
-                  <Route path="/terms-conditions" element={<div className="p-8 text-center">Terms & Conditions page coming soon...</div>} />
-                  <Route path="/refund-policy" element={<div className="p-8 text-center">Refund Policy page coming soon...</div>} />
-                  <Route path="/content-policy" element={<div className="p-8 text-center">Content Policy page coming soon...</div>} />
-                  <Route path="/bug-bounty" element={<div className="p-8 text-center">Bug Bounty page coming soon...</div>} />
-                  <Route path="/support" element={<div className="p-8 text-center">Support page coming soon...</div>} />
-                  <Route path="/services/:serviceId" element={<div className="p-8 text-center">Service detail page coming soon...</div>} />
+
+                  {/* Other pages */}
+                  <Route path="/bank-transfer" element={<BankTransfer />} />
+                  <Route path="/redeem-points" element={<RedeemPoints />} />
+                  <Route path="/wallet-transfer" element={<WalletTransfer />} />
+                  <Route path="/become-partner" element={<BecomePartner />} />
+                  <Route path="/why-us" element={<WhyUs />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-conditions" element={<TermsConditions />} />
+                  <Route path="/refund-policy" element={<RefundPolicy />} />
+                  <Route path="/content-policy" element={<ContentPolicy />} />
+                  <Route path="/bug-bounty" element={<BugBounty />} />
+                  <Route path="/support" element={<Support />} />
+                  <Route path="/services/:serviceId" element={<ServiceDetail />} />
+                  
+                  {/* 404 fallback */}
+                  <Route
+                    path="*"
+                    element={<div className="p-8 text-center">404 - Page Not Found</div>}
+                  />
                 </Routes>
               </main>
               <Footer />
